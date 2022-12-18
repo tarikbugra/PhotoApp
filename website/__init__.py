@@ -13,8 +13,10 @@ def create_app():
     app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{DB_NAME}"
     db.init_app(app)
     admin = Admin(app)
-
+    
     from .models import Photo, PhotoView, User, UserView
+
+
     admin.add_view(UserView(User, db.session))
     admin.add_view(PhotoView(Photo, db.session))
 
